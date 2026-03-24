@@ -1,116 +1,46 @@
 # ExpenseTrack
 
-A React + Vite expense tracker with Turso (libSQL) persistence, category analytics, and live currency conversion.
+[![CI](https://github.com/Rishi9322/m-mojo/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Rishi9322/m-mojo/actions/workflows/ci-cd.yml)
+[![Live Status](https://img.shields.io/website?url=https%3A%2F%2Fmmojo.vercel.app&label=live&up_message=online&down_message=offline)](https://mmojo.vercel.app)
+[![Vercel](https://img.shields.io/badge/deploy-vercel-black?logo=vercel)](https://vercel.com)
 
-## Stack
+A modern expense-tracking dashboard built with React and Vite, powered by Turso/libSQL, with analytics charts, live currency conversion, CI/CD on GitHub Actions, and production hosting on Vercel.
 
-- React 19 + Vite 8
-- Turso/libSQL via `@libsql/client/web`
-- Chart.js + `react-chartjs-2`
+Live app: https://mmojo.vercel.app
+
+Repository: https://github.com/Rishi9322/m-mojo
+
+## Highlights
+
+- Fast React 19 + Vite 8 frontend
+- Turso/libSQL storage using @libsql/client/web
+- Expense CRUD with date and category support
+- Dashboard summary with visual analytics (doughnut + bar charts)
+- Live exchange-rate conversion from USD
+- Dark mode and responsive UI
+- CI/CD pipeline with automatic production deploys on main
+
+## Tech Stack
+
+- React 19
+- Vite 8
+- Chart.js + react-chartjs-2
+- Turso/libSQL (@libsql/client/web)
 - ESLint 9
-- GitHub Actions CI/CD + Vercel deployment
+- GitHub Actions
+- Vercel
 
-## Features
+## Architecture
 
-- Passcode-based local vault selection (client-side user partitioning)
-- Expense CRUD with Turso persistence
-- Date and category tracking
-- Dashboard summary and category breakdown
-- Bar and doughnut charts for spending insights
-- Live USD conversion using Frankfurter API
-- Dark mode toggle and responsive UI
+1. UI Layer: React components in src/components.
+2. App State: managed in src/App.jsx using hooks.
+3. Data Layer: Turso operations in src/lib/db.js.
+4. Visualization: Chart.js via ExpenseCharts component.
+5. Deployment: GitHub Actions workflow deploys to Vercel.
 
-## Local Setup
+## Project Structure
 
-1. Install dependencies:
-
-```bash
-npm install
-```
-
-2. Create environment file:
-
-```bash
-cp .env.example .env
-```
-
-3. Fill `.env` values:
-
-```env
-VITE_TURSO_URL=...
-VITE_TURSO_TOKEN=...
-```
-
-4. Run app:
-
-```bash
-npm run dev
-```
-
-## Scripts
-
-- `npm run dev` - Start local dev server
-- `npm run lint` - Run ESLint
-- `npm run build` - Build production assets
-- `npm run preview` - Preview production build
-
-## Project Audit (March 2026)
-
-### Build and Quality Status
-
-- `npm run lint`: passing
-- `npm run build`: passing
-
-### Critical Findings
-
-1. A real Turso token existed in local `.env` during audit.
-2. Frontend environment variables are bundled client-side in Vite, so this token can be extracted by users.
-
-### Recommendations
-
-1. Rotate exposed Turso token immediately.
-2. Move database writes behind a server/API layer instead of direct browser-to-DB auth.
-3. Restrict DB auth scope and apply short-lived credentials where possible.
-4. Keep `.env` untracked and use `.env.example` for templates.
-
-## CI/CD Pipeline
-
-Pipeline file: `.github/workflows/ci-cd.yml`
-
-### What it does
-
-1. Runs on `push`, `pull_request`, and manual trigger.
-2. Executes quality gates:
-	 - `npm ci`
-	 - `npm run lint`
-	 - `npm run build`
-3. Deploys to Vercel on pushes to `main` after quality passes.
-
-### Required GitHub Secrets
-
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
-
-## Deploying with Vercel
-
-### Option A: Automatic via GitHub Actions
-
-1. Add required repository secrets.
-2. Push to `main`.
-3. GitHub Actions will run CI and deploy to Vercel.
-
-### Option B: Manual via Vercel CLI
-
-```bash
-npx vercel login
-npx vercel link
-npx vercel deploy --prod
-```
-
-## Repository Structure
-
-```
+```text
 src/
 	components/
 		CurrencyConverter.jsx
@@ -127,9 +57,128 @@ src/
 	App.jsx
 	index.css
 	main.jsx
+.github/
+	workflows/
+		ci-cd.yml
 ```
 
-## Notes
+## Getting Started
 
-- This app currently uses client-side passcode-based partitioning, not full authentication.
-- For production multi-user security, add a backend auth layer and row-level access controls.
+### Prerequisites
+
+- Node.js 20+
+- npm 10+
+- Turso database URL and auth token
+
+### Install
+
+```bash
+npm install
+```
+
+### Environment Variables
+
+Copy the template and fill values:
+
+```bash
+cp .env.example .env
+```
+
+```env
+VITE_TURSO_URL=https://your-database-name.turso.io
+VITE_TURSO_TOKEN=your_turso_token
+```
+
+### Run Locally
+
+```bash
+npm run dev
+```
+
+### Production Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Scripts
+
+- npm run dev: Start development server
+- npm run lint: Run ESLint checks
+- npm run build: Create production build
+- npm run preview: Preview built app locally
+
+## CI/CD
+
+Workflow file: .github/workflows/ci-cd.yml
+
+### Pipeline Behavior
+
+1. Triggers on push, pull_request, and workflow_dispatch.
+2. Runs quality checks:
+	 - npm ci
+	 - npm run lint
+	 - npm run build
+3. Deploys to Vercel production when code is pushed to main.
+
+### Required GitHub Secrets
+
+- VERCEL_TOKEN
+- VERCEL_ORG_ID
+- VERCEL_PROJECT_ID
+
+## Deployment
+
+### Automatic Deploy (Recommended)
+
+1. Configure required GitHub secrets.
+2. Push to main.
+3. GitHub Actions runs CI and deploys to Vercel.
+
+### Manual Deploy
+
+```bash
+npx vercel login
+npx vercel link
+npx vercel deploy --prod
+```
+
+## Audit Summary (March 2026)
+
+### Quality Status
+
+- Lint: passing
+- Build: passing
+- npm audit (moderate+): no vulnerabilities found
+
+### Important Security Findings
+
+1. A real Turso token was present in local .env during audit.
+2. Vite frontend environment variables are visible in client bundles.
+3. Direct browser-to-database writes are risky for production systems.
+
+The app now fails gracefully when Turso env vars are missing and shows a user-visible DB error instead of a blank screen.
+
+### Recommended Next Security Improvements
+
+1. Rotate exposed credentials immediately.
+2. Move DB writes behind a backend/API layer.
+3. Add proper authentication and authorization.
+4. Use scoped/short-lived tokens where possible.
+
+## Known Limitations
+
+- Current passcode flow is client-side vault partitioning, not full authentication.
+- Best suited for demo or low-risk personal usage in current architecture.
+
+## Roadmap
+
+- Add server-side auth and session management
+- Add test coverage (unit + integration)
+- Add export/import for expense history
+- Add budget alerts and recurring expense support
+
+## License
+
+This project is currently unlicensed. Add a LICENSE file if you plan to open source it publicly.
