@@ -52,7 +52,24 @@ export default function LandingPage({ onGetStarted }) {
             “ExpenseTrack turned my chaotic spending into clear insights. I finally feel in control of my money.”
           </p>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '12px' }}>
-            <img src="https://via.placeholder.com/48" alt="User avatar" style={{ borderRadius: '50%', marginRight: '12px' }} />
+            <div
+              aria-hidden="true"
+              style={{
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
+                marginRight: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'linear-gradient(135deg, var(--primary), var(--primary-dark))',
+                color: 'white',
+                fontWeight: '700',
+                fontSize: '0.9rem',
+              }}
+            >
+              AR
+            </div>
             <span style={{ fontWeight: '600' }}>Alex Rivera</span>
           </div>
         </div>
