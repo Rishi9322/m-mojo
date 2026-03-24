@@ -6,12 +6,27 @@
  */
 import { createClient } from '@libsql/client/web'
 
-const url   = import.meta.env.VITE_TURSO_URL
-const token = import.meta.env.VITE_TURSO_TOKEN
+function sanitizeEnvValue(value) {
+  if (typeof value !== 'string') return ''
+  return value.replace(/\\r|\\n|\r|\n/g, '').trim()
+}
+
+const url = sanitizeEnvValue(import.meta.env.VITE_TURSO_URL)
+const token = sanitizeEnvValue(import.meta.env.VITE_TURSO_TOKEN)
 
 const CONFIG_ERROR = 'Missing VITE_TURSO_URL or VITE_TURSO_TOKEN. Set these in your environment variables.'
 
-export const db = url && token ? createClient({ url, authToken: token }) : null
+let validUrl = false
+if (url) {
+  try {
+    const parsed = new URL(url)
+    validUrl = parsed.protocol === 'https:' || parsed.protocol === 'http:' || parsed.protocol === 'libsql:'
+  } catch (err) {
+    console.error('Invalid VITE_TURSO_URL:', err)
+  }
+}
+
+export const db = validUrl && token ? createClient({ url, authToken: token }) : null
 
 function ensureDb() {
   if (!db) {
