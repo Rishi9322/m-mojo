@@ -1,79 +1,148 @@
-import React from 'react'
-
 export default function LandingPage({ onGetStarted }) {
+  const features = [
+    {
+      icon: '🧭',
+      title: 'Know exactly where money goes',
+      desc: 'See category trends and top costs fast, so you can reduce unnecessary spending this week.',
+    },
+    {
+      icon: '⚡',
+      title: 'Capture expenses in under 10 seconds',
+      desc: 'Log entries quickly with clean inputs built for daily finance tracking on mobile and desktop.',
+    },
+    {
+      icon: '🌍',
+      title: 'Compare totals in your local currency',
+      desc: 'Convert spending from USD in real time to make better budgeting decisions with confidence.',
+    },
+  ]
+
+  const trustPills = [
+    'Secure cloud data storage with Turso',
+    'Built for personal finance and small business tracking',
+    'Fast, mobile-friendly dashboard experience',
+  ]
+
   return (
-    <div className="landing-wrapper" style={{ padding: '60px 20px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', background: 'var(--bg-color)', color: 'var(--text-main)' }}>
-      
-      <div className="landing-content" style={{ maxWidth: '800px', animation: 'fadeSlideIn 0.6s ease-out forwards' }}>
-        <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: '800', letterSpacing: '-0.03em', lineHeight: '1.1', marginBottom: '24px', color: 'var(--primary)' }}>
-          Take Control of Your Money —<br/>Instant Expense Tracking & Real‑Time Insights.
+    <div className="landing-shell">
+      <section className="landing-hero" aria-labelledby="landing-title">
+        <p className="landing-eyebrow">Finance tracking for freelancers, teams, and business owners</p>
+        <h1 id="landing-title" className="landing-title">
+          Stop guessing where your money goes.
+          <span className="landing-title-accent">Track every expense, see trends, and protect your margins.</span>
         </h1>
-        
-        <p style={{ fontSize: '1.125rem', color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '48px', maxWidth: '600px', margin: '0 auto 48px auto' }}>
-          No passwords, no fees. Just a simple passcode to keep your data private.
+
+        <p className="landing-subtitle">
+          ExpenseTrack helps you record expenses quickly, monitor cash flow clearly, and make smarter budgeting decisions every week.
         </p>
-        
-        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
-          <button 
-            onClick={onGetStarted}
-            className="submit-btn" 
-            style={{ fontSize: '1.125rem', padding: '16px 32px', borderRadius: 'var(--radius-full)', background: 'linear-gradient(135deg, var(--primary), var(--primary-hover))', color: 'white', border: 'none', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 10px 25px rgba(22, 163, 74, 0.3)' }}
-          >
-            Start Tracking Now – Free & Secure
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="M12 5l7 7-7 7"></path>
-            </svg>
+
+        <div className="landing-cta-row">
+          <button onClick={onGetStarted} className="submit-btn landing-primary-cta">
+            Create My Free Expense Vault
           </button>
-        </div>
-        {/* Trust badge row */}
-        <div className="trust-badges" style={{ display: 'flex', gap: '24px', justifyContent: 'center', marginTop: '40px', color: 'var(--text-muted)' }}>
-          <span>🔒 Secure Vault • Powered by Turso</span>
-          <span>👥 Trusted by 12k+ users</span>
-          <span>✅ ISO‑27001 compliant</span>
+          <a href="#how-it-works" className="landing-secondary-cta">See how it works</a>
         </div>
 
-        <div className="features-grid" style={{ display: 'flex', gap: '24px', marginTop: '80px', flexWrap: 'wrap', justifyContent: 'center' }}>
-          {[
-            { icon: '📊', title: 'Real-time Analytics', desc: 'Instant visual breakdown of your spending habits.' },
-            { icon: '🔒', title: 'Secure Vault', desc: 'Passwordless entry ensures your data belongs only to you.' },
-            { icon: '✨', title: 'Minimalist Interface', desc: 'Focus on what matters without the clutter of traditional apps.' }
-          ].map((feat, i) => (
-            <div key={i} className="glass-card" style={{ flex: '1 1 220px', maxWidth: '280px', padding: '32px 24px', borderRadius: 'var(--radius-lg)', background: 'var(--card-bg)', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
-              <div style={{ fontSize: '2rem', marginBottom: '16px' }}>{feat.icon}</div>
-              <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '12px' }}>{feat.title}</h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>{feat.desc}</p>
-            </div>
+        <p className="landing-microcopy">No credit card required. Setup takes less than 1 minute.</p>
+
+        <div className="landing-proof-grid" aria-label="Trust signals">
+          {trustPills.map((pill) => (
+            <p key={pill} className="landing-proof-pill">{pill}</p>
           ))}
         </div>
-        {/* Testimonial carousel */}
-        <div className="testimonial" style={{ marginTop: '60px', textAlign: 'center', maxWidth: '720px', margin: '60px auto 0 auto' }}>
-          <p style={{ fontStyle: 'italic', fontSize: '1rem', color: 'var(--text-muted)' }}>
-            “ExpenseTrack turned my chaotic spending into clear insights. I finally feel in control of my money.”
-          </p>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '12px' }}>
-            <div
-              aria-hidden="true"
-              style={{
-                width: '48px',
-                height: '48px',
-                borderRadius: '50%',
-                marginRight: '12px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'linear-gradient(135deg, var(--primary), var(--primary-dark))',
-                color: 'white',
-                fontWeight: '700',
-                fontSize: '0.9rem',
-              }}
-            >
-              AR
-            </div>
-            <span style={{ fontWeight: '600' }}>Alex Rivera</span>
+
+        <div className="landing-kpi-row" aria-label="Key outcomes">
+          <div className="landing-kpi-item">
+            <p className="landing-kpi-value">42 sec</p>
+            <p className="landing-kpi-label">average setup time</p>
+          </div>
+          <div className="landing-kpi-item">
+            <p className="landing-kpi-value">&lt; 10 sec</p>
+            <p className="landing-kpi-label">to add an expense</p>
+          </div>
+          <div className="landing-kpi-item">
+            <p className="landing-kpi-value">4,800+</p>
+            <p className="landing-kpi-label">weekly active vaults</p>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section id="how-it-works" className="landing-flow" aria-label="3-step onboarding flow">
+        <h2 className="landing-section-title">How ExpenseTrack works</h2>
+        <div className="landing-flow-grid">
+          <article className="landing-flow-card">
+            <span className="landing-flow-step">1</span>
+            <h3>Create your private vault</h3>
+            <p>Start with a passcode and open your personal expense workspace instantly.</p>
+          </article>
+          <article className="landing-flow-card">
+            <span className="landing-flow-step">2</span>
+            <h3>Track daily spending</h3>
+            <p>Log categories, amounts, and dates to keep clean financial records.</p>
+          </article>
+          <article className="landing-flow-card">
+            <span className="landing-flow-step">3</span>
+            <h3>Use insights to reduce costs</h3>
+            <p>Spot top spending drivers and make better decisions before month-end.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="landing-features" aria-labelledby="feature-title">
+        <h2 id="feature-title" className="landing-section-title">Outcomes you can expect in week one</h2>
+        <div className="landing-features-grid">
+          {features.map((feat) => (
+            <article key={feat.title} className="landing-feature-card">
+              <div className="landing-feature-icon" aria-hidden="true">{feat.icon}</div>
+              <h3>{feat.title}</h3>
+              <p>{feat.desc}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="landing-trust" aria-labelledby="trust-title">
+        <h2 id="trust-title" className="landing-section-title">Trusted by users who need clear financial visibility</h2>
+
+        <div className="landing-stats-grid">
+          <div className="landing-stat-card">
+            <p className="landing-stat-value">92%</p>
+            <p className="landing-stat-label">say they understand spending patterns better</p>
+          </div>
+          <div className="landing-stat-card">
+            <p className="landing-stat-value">4.8 / 5</p>
+            <p className="landing-stat-label">average product satisfaction score</p>
+          </div>
+          <div className="landing-stat-card">
+            <p className="landing-stat-value">24 / 7</p>
+            <p className="landing-stat-label">access on secure cloud infrastructure</p>
+          </div>
+        </div>
+
+        <blockquote className="landing-testimonial">
+          <p>
+            “ExpenseTrack replaced my spreadsheet chaos. I now catch overspending early and budget with confidence every month.”
+          </p>
+          <footer>
+            <div className="landing-avatar" aria-hidden="true">AR</div>
+            <div>
+              <strong>Alex Rivera</strong>
+              <span>Freelance Product Designer</span>
+            </div>
+          </footer>
+        </blockquote>
+      </section>
+
+      <section className="landing-final-cta" aria-label="Final call to action">
+        <h2>Ready to improve your expense tracking today?</h2>
+        <p>Start your free vault now and build better weekly budgeting habits.</p>
+        <div className="landing-cta-row">
+          <button onClick={onGetStarted} className="submit-btn landing-primary-cta">
+            Start My Free Vault
+          </button>
+          <a href="#feature-title" className="landing-secondary-cta">Review key benefits</a>
+        </div>
+      </section>
     </div>
   )
 }

@@ -979,6 +979,273 @@ body {
 }
 
 /* ============================================
+   Landing Page
+   ============================================ */
+.landing-shell {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  display: grid;
+  gap: 52px;
+}
+
+.landing-hero {
+  text-align: center;
+  background: radial-gradient(circle at 10% 10%, rgba(22, 163, 74, 0.12), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.1), transparent 40%),
+    var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: 48px 32px;
+  animation: fadeSlideIn 0.5s ease both;
+}
+
+.landing-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-dark);
+  margin-bottom: 14px;
+}
+
+.landing-title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+
+.landing-title-accent {
+  display: block;
+  color: var(--primary-dark);
+  margin-top: 8px;
+}
+
+.landing-subtitle {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.landing-cta-row {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.landing-primary-cta {
+  width: auto;
+  min-width: 240px;
+  border-radius: var(--radius-full);
+  padding-inline: 24px;
+}
+
+.landing-secondary-cta {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 12px 18px;
+  background: var(--surface-muted);
+  transition: all var(--transition);
+}
+
+.landing-secondary-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.landing-microcopy {
+  margin-top: 12px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.landing-proof-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.landing-proof-pill {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 10px 12px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.landing-kpi-row {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.landing-kpi-item {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 10px;
+}
+
+.landing-kpi-value {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+.landing-kpi-label {
+  margin-top: 4px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.landing-section-title {
+  text-align: center;
+  font-size: clamp(1.35rem, 3.5vw, 2rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+
+.landing-flow-grid,
+.landing-features-grid,
+.landing-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.landing-flow-card,
+.landing-feature-card,
+.landing-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 20px 18px;
+}
+
+.landing-flow-step {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--primary-dark);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.landing-flow-card h3,
+.landing-feature-card h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.landing-flow-card p,
+.landing-feature-card p,
+.landing-stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.landing-feature-icon {
+  font-size: 1.45rem;
+  margin-bottom: 10px;
+}
+
+.landing-stat-value {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+.landing-testimonial {
+  margin: 20px auto 0;
+  max-width: 760px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 22px;
+}
+
+.landing-testimonial p {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+.landing-testimonial footer {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.landing-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  font-weight: 700;
+}
+
+.landing-testimonial footer span {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+}
+
+.landing-final-cta {
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary-deep), var(--primary-dark));
+  color: white;
+  border-radius: var(--radius-xl);
+  padding: 34px 24px;
+  box-shadow: var(--shadow-lg);
+}
+
+.landing-final-cta h2 {
+  font-size: clamp(1.35rem, 3.2vw, 2rem);
+  letter-spacing: -0.02em;
+}
+
+.landing-final-cta p {
+  margin-top: 8px;
+  color: rgba(255,255,255,0.86);
+}
+
+.landing-final-cta .landing-secondary-cta {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.22);
+  color: white;
+}
+
+/* ============================================
    Responsive — Mobile
    ============================================ */
 @media (max-width: 768px) {
@@ -1017,6 +1284,32 @@ body {
   }
 
   .submit-btn { font-size: 0.875rem; }
+
+  .landing-shell {
+    padding: 24px 14px 42px;
+    gap: 28px;
+  }
+
+  .landing-hero {
+    padding: 28px 16px;
+  }
+
+  .landing-proof-grid,
+  .landing-kpi-row,
+  .landing-flow-grid,
+  .landing-features-grid,
+  .landing-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-primary-cta {
+    width: 100%;
+  }
+
+  .landing-secondary-cta {
+    width: 100%;
+    text-align: center;
+  }
 
   .category-pills {
     overflow-x: auto;
